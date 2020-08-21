@@ -1,1 +1,1 @@
-A simple demonstration of the Flask-login library.
+A simple demonstration of using OAuth 2.0 in Flask.
