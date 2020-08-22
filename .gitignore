@@ -145,3 +145,4 @@ migrations/
 # User added
 *.disabled
 .vscode/
+credentials.py

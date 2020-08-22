@@ -8,13 +8,20 @@ os.environ['OAUTHLIB_RELAX_TOKEN_SCOPE'] = '1'
 from flask import Flask, redirect, url_for, render_template
 from flask_dance.contrib.google import make_google_blueprint, google
 
+from credentials import client_id, client_secret
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'YerSecretKey'
 
 # Check documentation for possible parameters
 # ! By default, 'offline' should be False.
-blueprint = make_google_blueprint(client_id='',
-                                    client_secret='', 
+
+# * Get client_id and client_secret from the Google APIs developer console.
+# * https://console.developers.google.com
+# Create a project, then create an OAuth consent screen and lastly, create a credential for your Web Application.
+# ! The client_id and client_secret are from the credentials.py file, which is a file that is not included in the Git repository.
+blueprint = make_google_blueprint(client_id=client_id,
+                                    client_secret=client_secret, 
                                     offline=True,
                                     scope=['profile', 'email'])
 
@@ -65,7 +72,5 @@ def loginOAuthGoogle():
     # Automatically redirects user to Welcome
     return render_template('welcome.html', email=email)
 
-
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
